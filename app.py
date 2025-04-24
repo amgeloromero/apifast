@@ -6,6 +6,10 @@ from models.tasks import Tasks
 app = FastAPI()
 
 
+@app.get("/")
+def get_hello():
+    return {"message": "welcome api tasks"}   
+    
 @app.get("/task")
 def get_tasks(db: Session = Depends(get_db)):
     statement = select(Tasks)
@@ -15,7 +19,6 @@ def get_tasks(db: Session = Depends(get_db)):
 @app.post("/task")
 def create_task(task: Tasks, db: Session = Depends(get_db)):
     db.add(task)
-    #print(deal)
     db.commit()
     db.refresh(task)
     return task
