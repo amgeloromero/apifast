@@ -1,0 +1,6 @@
+fast-api-crud/
+│
+├── app.py
+├── models/
+│   └── post.py
+├── database.py
